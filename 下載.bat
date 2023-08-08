@@ -1,6 +1,8 @@
 @echo off
 setlocal
-powershell -Command "(Get-Content -Raw -Path %~f0) -replace '`r`n', '`n' | Set-Content -Path %TEMP%\temp_script.bat -Encoding utf8"
+
+for /f "delims=" %%x in ('type "%~f0"') do set "content=!content!%%x^r^"
+echo %content% > %TEMP%\temp_script.bat
 
 chcp 65001
 set ffmpeg_dir=%~dp0ffmpeg
