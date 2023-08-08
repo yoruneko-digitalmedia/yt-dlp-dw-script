@@ -1,4 +1,7 @@
 @echo off
+setlocal
+powershell -Command "(Get-Content -Raw -Path %~f0) -replace '`r`n', '`n' | Set-Content -Path %TEMP%\temp_script.bat -Encoding utf8"
+
 chcp 65001
 set ffmpeg_dir=%~dp0ffmpeg
 set PATH=%PATH%;%ffmpeg_dir%\bin
